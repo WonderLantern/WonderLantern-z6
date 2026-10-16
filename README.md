@@ -1,8 +1,8 @@
-# Nikon Z6 长曝光与肩屏倒计时 · 挂载测试版 v1
+# Nikon Z6 长曝光与肩屏倒计时v1
 
 [English（旧版说明，暂未更新）](README.en.md)
 
-版本：resident_dual_countdown_mount_v1_test。适用机型仅为 Nikon Z6，基于 C3.80。
+适用机型仅为 Nikon Z6，基于 C3.80。
 
 本版包含自定义快门声，将肩屏倒计时主体迁入卡载 SLOWCORE.BIN。
 
