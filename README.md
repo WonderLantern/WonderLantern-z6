@@ -18,7 +18,7 @@ Custom shutter sound自定义快门声/
 - en/：保留原有英文版 EG162080.BIN 与 SHCORE.BIN，本次不更新。
 - [声音要求.md](<Custom shutter sound自定义快门声/声音要求.md>)：本次中文版的声音格式、编号与制作规范。
 - [SOUND_SPEC.en.md](<Custom shutter sound自定义快门声/SOUND_SPEC.en.md>)：保留原有英文声音规范，适用于旧版英文固件。
-- SHUTTER/1.WAV～4.WAV：沿用现有发布包的四个声音示例，依次为猫声、胶片相机快门声、鸟声和苏联相机镜间快门声。
+- SHUTTER/1.WAV～4.WAV：沿用现有发布包的四个声音示例，依次为猫声、胶片相机快门声、鸟声和镜间快门声。
 - SHUTTER.WAV：保留供旧版英文固件使用，本次中文版不读取。
 
 仓库根目录的 README.md 为本次中文版说明；README.en.md 保留原有英文版说明，暂未更新。
