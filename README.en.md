@@ -1,52 +1,48 @@
-# Nikon Z6 Custom Shutter Sound
+# Wonder Lantern · Nikon Z6 Three-Feature Release v1
 
-Version: 2026-10-08. For the Nikon Z6 only, based on firmware C3.80.
+[中文](README.md)
 
-Provides separate Chinese or English shutter sound menus, card-based sound replacement, four numbered sound slots, preview playback, and reloading. The selected sound number and on/off setting are saved on the card. During continuous shooting, each shot starts playback from the beginning, cutting off the previous sound. Separate opening and closing sounds for long exposures have not been implemented.
+2026-10-30. For the **original Nikon Z6, based on C3.80**. Includes custom shutter sounds, extended exposure and countdown, and custom framing guides with recoverable NEF crop metadata.
 
-## Package Contents
+## Files and installation
 
-Located in `z6/Custom shutter sound自定义快门声/`:
+```text
+EG162080.BIN                 One main firmware for both languages
+cn/                         Chinese cores; copy all three files to card root
+  Shuttersound.bin
+  Slowshutter.bin
+  Grid.BIN
+en/                         English cores, with the same filenames
+SHUTTER/1.WAV through 4.WAV  Four unchanged sound examples from earlier releases
+```
 
-- `cn/SHCORE.BIN`: Chinese menu core, paired with `EG162080.BIN` at the package root.
-- `en/`: Matching English `EG162080.BIN` and `SHCORE.BIN` files.
-- `EG162080.BIN`: Main firmware for the Chinese version.
-- `SHUTTER.WAV`: Default sound example for the card.
-- `SHUTTER/1.WAV` through `4.WAV`: Four sound examples: 1 — a cat; 2 — the shutter of a film camera; 3 — a bird; 4 — the leaf shutter of a Soviet camera.
-- `SOUND_SPEC.en.md`: Sound format, naming, and preparation requirements.
+1. Turn the camera off. Back up your sounds, settings files and current matching firmware/core set.
+2. Copy `EG162080.BIN` and the three files **inside** either `cn/` or `en/` to the card root. Do not copy the language directory as a substitute. This release updates both the main firmware and Grid core; use the matching files.
+3. For the supplied examples, also copy `SHUTTER/` to the card root. Copy selectively if you already have custom sounds, to avoid replacing files with the same names.
+4. With sufficient battery power, perform the update from the camera's **Firmware version** menu. Do not interrupt power. Turn the camera off and on after completion, then wait for loading and card activity to finish. The three features are then available in Setup.
 
-## Installation and Use
+To change language later, turn the camera off and replace the three cores. Both languages share the same main firmware. Custom menu language comes from the cores, independently of the factory language setting. A missing core omits its feature menu while the other cores can still load. Do not rename or mix older SHCORE/SLOWCORE or standalone-feature cores with this firmware.
 
-1. Back up the existing settings-related files on the card. *It is recommended to move your photos off the card, then back up all files and folders at the card root.*
-2. For Chinese, copy `EG162080.BIN` and `SHCORE.BIN` from `cn/` to the card root. For English, copy these two files from `en/` to the card root. Choose only one language set. Then copy `SHUTTER.WAV` and the entire `SHUTTER/` folder from the package to the card root. On the camera, start the update from **Firmware version**. Do not interrupt power during the update. Use a sufficiently charged battery as required by Nikon's firmware update instructions.
-3. After the update, turn the camera off and back on. Wait about five seconds after startup and until the card access indicator goes out, then open the shutter sound settings in the setup menu to enable the feature, select a sound number, or play a preview.
-4. To change a sound, replace the corresponding WAV file, then select its number or use **Reload**. There is no need to flash the firmware again.
-5. *Please note*: The added menu supports only the directional buttons. The touchscreen and OK button cannot be used in this menu.
+## Features
 
-## Usage Notes
+- **Shutter sound:** 15 numbered slots, On/Off, selection, Reload and Play. Each shot restarts the sound and cuts off the previous one during a burst. Use direction buttons/OK for the selection list and Play; other main-menu rows retain touch support. Replacing a WAV does not require reflashing; select its number or Reload, then preview it.
+- **Long Exposure & Countdown:** Enable or disable in Setup. Preserves the existing extended exposure and top LCD countdown behavior, restoring the shutter display after completion or cancellation. The switch is remembered on the card.
+- **Custom framing guides:** Direct On/Off choices in the second-level menu, plus Select and Crop & Mask entries. Slot 1 is rule of thirds; slots 2–5 are 21:9, 65:25, 4:3 and 2.35:1; slots 6–10 are empty. Factory framing-grid switch linkage is retained. With Crop & Mask enabled, the area outside the frame is blacked out on supported LCD live view and recoverable crop metadata is written to NEF files. Lightroom Develop can adjust the crop or restore the full image. JPEG-only files do not receive this metadata; with JPEG+NEF, only the NEF receives it.
 
-Update the firmware first. Once you have followed the installation steps, you can explore the feature. The custom shutter sound settings appear below **Firmware version** in the setup menu. *A cut-off meow after startup is normal.*
+## Settings and sounds
 
-After trying the feature, turn the camera off and remove the card. Follow the requirements in `SOUND_SPEC.en.md` to replace sounds 1–4 with your own shutter sounds. You may use fewer than four numbered sound files, but do not add more than four.
+The camera creates these files at the card root. No default settings files are included; do not overwrite your settings with someone else's records:
 
-## Disabling and Restoring
+| File | Stored setting |
+|---|---|
+| ShuttersoundMEM.SEL (8B) | Sound number and switch |
+| SlowshutterMEM.sel (8B) | Long-exposure switch |
+| GridMEM.SEL (16B) | Guide switch, slot, Crop & Mask |
 
-Turning the feature off in the menu only disables custom sounds during shooting. Turning the camera off, removing `SHCORE.BIN`, and turning it back on activates the missing-core fallback path.
+When upgrading from the preceding three-feature release, keep all three files. From the older standalone sound version, only if the new file is absent, back up and rename the 8-byte `ShutterMEM.SEL` to `ShuttersoundMEM.SEL`. The earlier `SHUTTER.SEL` can be treated the same way. Change only the settings filename, not its contents; this does not apply to core BIN files. Wait for card activity to finish before powering off. Single-file settings do not guarantee atomic saving during sudden power loss.
 
-To restore the complete stock firmware, use Nikon's official Z6 firmware and follow Nikon's official update procedure.
+Sounds use `SHUTTER/1.WAV` through `15.WAV`; unused slots may be left empty. Examples 1–4 are the existing cat, film-camera shutter, bird and leaf-shutter sounds, unchanged. See [sound requirements](SOUND_SPEC.en.md).
 
-## Disclaimer
+## Known limits
 
-The author accepts no responsibility for issues after installation, including a bricked camera or freezes. The author can only state that these issues have not occurred on their own camera.
-
-## Matching File Hashes
-
-### cn
-
-firmware_sha256: 5fc400199d782feaccfa530865303cc652b3f48891838599101909081984b976
-core_sha256: 5f2e14ed53b78bd00bff077028781252c29f6a94a12eb529b438e0904a91d6d2
-
-### en
-
-firmware_sha256: 796806291185953ceaa9e59c428e844b2e6d5b11f5af739794c70ccc9d346c1a
-core_sha256: 88aecb623a057418bba65c67fbc3cdd95cef3eaa612a39358d19493beee8f754
+**The existing USB/PixelCake tethering slowdown issue remains under investigation and is not fixed in this release.**
